@@ -1,19 +1,15 @@
 /**
- * Created by tricom on 4/25/14.
- */
+ *
+ * the script displays questions and choices, checks the answers, calculates and displays the score
+ * */
 
 
 
 window.onload=init;
-var score= 0,radios;
-var count=0;
+var score= 0,radios,count= 0,question,choices,co= 0,cr,c,newScore,radioButton,correctAnswer;
 var answers=new Array();
-var question;
-var choices,co= 0,cr;
-var c,newScore,radioButton;
-var correctAnswer;
 
-
+//Display the next question and choices when the 'next' button is clicked
 
 function disp_next() {
 var q,result,ch0,ch1,ch2,ch3,result0,result1,result2,result3;
@@ -28,10 +24,7 @@ var q,result,ch0,ch1,ch2,ch3,result0,result1,result2,result3;
        result0=JSON.stringify(json.a[count].choices[0]);
        ch0 = JSON.parse(result0);
 
-
         document.querySelector('#opt0').innerHTML = ch0;
-
-
 
         result1=JSON.stringify(json.a[count].choices[1]);
         ch1 = JSON.parse(result1);
@@ -44,60 +37,49 @@ var q,result,ch0,ch1,ch2,ch3,result0,result1,result2,result3;
         ch3 = JSON.parse(result3);
         document.querySelector('#opt3').innerHTML = ch3;
 
-
-
-
-
     });
 
 
 
-
-        var ele = document.getElementsByName("opt");
-    //ele[0].checked=true;
-    for(var i=0;i<ele.length;i++)
+     var ele = document.getElementsByName("opt");
+     for(var i=0;i<ele.length;i++)
         ele[i].checked = false;
 
 
     if (answers[count]!=null) {
 
-//        radios = document.getElementsByName('opt');
-  //      radios[0].checked=true;
-
         ele[answers[count]].checked=true;
-
-
 
     }
 
 
 }
 
+//when the user clicks the  'back' button to change an answer
+
 function goBack()
 {
     count=count-1;
-   // alert("Count changed to"+count);
     disp_next();
 
 }
+
+
 function init()
 {
-
-//alert("hi");
     document.getElementById("bb").style.display = "none";
-  //  document.getElementById("aa").style.display = "none";
 }
 
+
+//compares the user answer with the one stored in the JSON object and increments the score counter : count
 
 function getAnswer() {
     document.getElementById("aa").style.display = "none";
 
     $('#bb').hide().fadeIn(1000);
 
-    //alert("Count: "+count);
 
     var a= $("input:radio[name='opt']").is(":checked");
-    //alert("Clicked "+ a);
 
     if (co>0&&a===false)
 
@@ -110,7 +92,6 @@ function getAnswer() {
 
     else {
 
-//    alert("Yo!");
         radios = document.getElementsByName('opt');
 
         if (co > 0) {
@@ -127,9 +108,7 @@ function getAnswer() {
         }
 
 
-      //  alert("Count:"+count);
         if (count === 4) {
-           // alert(answers.length);
             newScore=0;
             $.getJSON("allQ.json",function (json) {
 
@@ -139,16 +118,13 @@ function getAnswer() {
 
                 for (var z = 0; z < answers.length; z++) {
 
-                    // alert("Answers "+answers[z]);
-                    // alert("in loop");
+
 
                     result=JSON.stringify(json.a[z].correctAnswer);
                     ch = JSON.parse(result);
-                   // alert("Stored "+ch);
 
 
                     if (answers[z].toLocaleString() === ch.toLocaleString()) {
-                       // alert("Correct");
                         newScore++;
                     }
 
