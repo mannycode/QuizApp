@@ -1,0 +1,31 @@
+{
+
+    "a": [
+        {
+            "question": "Who is Prime Minister of Great Britian?",
+            "choices": ["David Cameron", "Gordon Brown", "Winston Churchill", "Tony Blair"],
+            "correctAnswer": 0
+        },
+        {
+            "question": "Which year did USA get its independence?",
+            "choices": [1776, 1779, 1853, 1780],
+            "correctAnswer": 0
+
+        },
+
+        {
+            "question": "Who is the first US President?",
+            "choices": ["Jackson", "Franklin", "Washington", "Lincoln"],
+            "correctAnswer": 2
+
+        },
+        {
+            "question": "Whats my First name",
+            "choices": ["Rajni", "Robert", "Sean", "Manan"],
+            "correctAnswer": 3
+
+        }
+    ]
+}
+
+
